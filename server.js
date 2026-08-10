@@ -1,11 +1,15 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const apiKeyGuard = require('./src/middleware/apiKey');
-const routes = require('./src/routes');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const apiKeyGuard = require("./src/middleware/apiKey");
+const routes = require("./src/routes");
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://marathon-tracker-frontend-production.up.railway.app",
+  }),
+);
 app.use(express.json());
 app.use(apiKeyGuard);
 app.use(routes);
